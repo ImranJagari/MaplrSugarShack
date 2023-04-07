@@ -1,0 +1,48 @@
+﻿<div class="productPageSlider d-flex flex-wrap">
+    @foreach (var product in CatalogItems)
+    {
+        <div class="col-3 item">
+            <!-- product name -->
+            <div class="product-name">
+                <a href="@($"/product/{product.Id}")">@product.Name</a>
+            </div>
+            <!-- End product name -->
+            <!-- start product image -->
+            <div class="product-image">
+                <!-- start product image -->
+                <a href="@($"/product/{product.Id}")">
+                    <!-- image -->
+                    <img class="primary blur-up lazyload" data-src="@product.Image" src="@product.Image" alt="image" title="product">
+                    <!-- End image -->
+                    <!-- Hover image -->
+                    <img class="hover blur-up lazyload" data-src="@product.Image" src="@product.Image" alt="image" title="product">
+                    <!-- End hover image -->
+                </a>
+                <!-- end product image -->
+            </div>
+            <!-- end product image -->
+            <!-- Start product button -->
+            <div class="button-set button-style2">
+                <form class="variants add btn-style2" action="#" method="post">
+                    <button class="btn cartIcon btn-addto-cart" type="button" tabindex="0"><i class="icon anm anm-bag-l"></i></button>
+                </form>
+                <a href="javascript:void(0)" title="Quick View" class="btn-style2 quick-view-popup quick-view" data-toggle="modal" data-target="#content_quickview">
+                    <i class="icon anm anm-search-plus-r"></i>
+                </a>
+            </div>
+            <!-- end product button -->
+            <!--start product details -->
+            <div class="product-details text-center">
+                <!-- product price -->
+                <div class="product-price">
+                    <span class="price">$@product.Price</span>
+                </div>
+                <!-- End product price -->
+            </div>
+            <!-- End product details -->
+        </div>
+    }
+</div>
+
+
+

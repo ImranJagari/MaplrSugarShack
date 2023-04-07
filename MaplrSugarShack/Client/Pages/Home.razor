@@ -1,0 +1,32 @@
+﻿@page "/"
+
+<!--Collection Tab slider-->
+<div class="tab-slider-product section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section-header text-center">
+                    <h2 class="h2 heading-font">Types de sirop</h2>
+                </div>
+                <div class="tabs-listing">
+                    <ul class="tabs clearfix">
+                        @for (int i = 0; i < _syropTypes.Length; i++)
+                        {
+                            <li class="@(i <= 0 ? $"active" : $"tab{i + 1}")" rel="@($"tab{i + 1}")">@(_syropTypes[i].ToString())</li>
+                        }
+                    </ul>
+                    <div class="tab_container">
+                        @foreach(var catalog in _catalogs.GroupBy(_ => _.Type))
+                        {
+                            <div id="@($"tab{(int)catalog.Key + 1}")" class="tab_content grid-products style3">
+                                <CatalogList CatalogItems="catalog.ToArray()" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Collection Tab slider-->
+

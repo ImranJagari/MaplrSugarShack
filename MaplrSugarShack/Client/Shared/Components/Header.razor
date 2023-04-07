@@ -1,0 +1,77 @@
+﻿<!--Header-->
+<div class="header-wrap animated d-flex">
+    <div class="container-fluid">
+        <div class="row justify-content-between">
+            <!--Desktop Logo-->
+            <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
+                <NavLink Match="NavLinkMatch.All" href="/">
+                    <img src="images/logo.png" style="width: 50px;" alt="Maplr Cabane à sucre" title="Maplr Cabane à sucre" />
+                </NavLink>
+            </div>
+            <!--End Desktop Logo-->
+            <!--Mobile Logo-->
+            <div class="col-6 col-sm-6 col-md-6 col-lg-2 d-block d-lg-none mobile-logo">
+                <div class="logo">
+                    <NavLink Match="NavLinkMatch.All" href="/">
+                        <img src="images/logo.png" style="width: 50px;" alt="Maplr Cabane à sucre" title="Maplr Cabane à sucre" />
+                    </NavLink>
+                </div>
+            </div>
+            <!--Mobile Logo-->
+            <div class="col-4 col-sm-3 col-md-3 col-lg-2 my-auto">
+                <div class="site-cart">
+                    <a href="#" class="site-header__cart" title="Cart">
+                        <i class="icon anm anm-bag-l"></i>
+                        <span id="CartCount" class="site-header__cart-count" data-cart-render="item_count">@_cartLines.Count</span>
+                    </a>
+
+                    <!--Minicart Popup-->
+                    <div id="header-cart" class="block block-cart">
+                        <ul class="mini-products-list">
+                            @foreach(var line in _cartLines)
+                            {
+                                <li class="item">
+                                    <a class="product-image" href="#">
+                                        <img src="@line.Image" alt="@line.Name" title="" />
+                                    </a>
+                                    <div class="product-details">
+                                        <a href="#" class="remove"><i class="anm anm-times-l" aria-hidden="true"></i></a>
+                                        <a href="#" class="edit-i remove" @onclick:preventDefault @onclick:stopPropagation @onclick="() => RemoveLine(line)"><i class="anm anm-edit" aria-hidden="true"></i></a>
+                                        <a class="pName" href="@($"/product/{line.ProductId}")">@line.ProductId</a>
+                                        <div class="wrapQtyBtn">
+                                            <div class="qtyField">
+                                                <span class="label">Qty:</span>
+                                                <a class="qtyBtn minus" @onclick:preventDefault @onclick:stopPropagation @onclick="() => ChangeQuantity(line, false)"><i class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                <input type="text" id="Quantity" name="quantity" value="@line.Qty" class="product-form__input qty">
+                                                <a class="qtyBtn plus" @onclick:preventDefault @onclick:stopPropagation @onclick="() => ChangeQuantity(line, true)"><i class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="priceRow">
+                                            <div class="product-price">
+                                                <span class="money">$@line.Price</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                        <div class="total">
+                            <div class="total-in">
+                                <span class="label">Cart Subtotal:</span><span class="product-price"><span class="money">$@_cartLines.Sum(_ => _.Price * _.Qty)</span></span>
+                            </div>
+                            <div class="buttonSet text-center">
+                                <a href="/cart" class="btn btn-secondary btn--small">View Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Minicart Popup-->
+                </div>
+                <div class="site-header__search">
+                    <button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Header-->
+

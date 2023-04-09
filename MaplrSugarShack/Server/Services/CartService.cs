@@ -28,6 +28,9 @@ namespace MaplrSugarShack.Server.Services
 
 		public async Task AddOrUpdateProduct(ObjectId productId, int quantity, bool isAdding = false)
 		{
+			if(quantity < 0)
+				quantity = Math.Abs(quantity);
+
 			var cartProduct = _collection.AsQueryable().FirstOrDefault(_ => _.ProductId == productId);
 			if (cartProduct is null)
 			{
